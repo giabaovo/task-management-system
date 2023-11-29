@@ -5,9 +5,20 @@ from rest_framework_simplejwt.views import (
     TokenRefreshView,
 )
 
-from accounts.api import AccountRegister, AccountVerify, ResendAccountVerifyEmail
+from accounts.api import (
+    AccountRegister, 
+    AccountVerify, 
+    ResendAccountVerifyEmail,
+    ForgotPassword,
+    ForgotPasswordVerify,
+    ResetPassword
+)
 
 urlpatterns = [
+    path("forgot_password/", ForgotPassword.as_view(), name="forgot_password"),
+    path("forgot_password_verify/", ForgotPasswordVerify.as_view(), name="forgot_password_verify"),
+    path("reset_password/", ResetPassword.as_view(), name="reset_password"),
+
     path("resend/", ResendAccountVerifyEmail.as_view(), name="resend"),
     path("verify/", AccountVerify.as_view(), name="account_verify"),
     path("register/", AccountRegister.as_view(), name="register"),
