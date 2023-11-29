@@ -5,9 +5,11 @@ from rest_framework_simplejwt.views import (
     TokenRefreshView,
 )
 
-from accounts.api import AccountRegister
+from accounts.api import AccountRegister, AccountVerify, ResendAccountVerifyEmail
 
 urlpatterns = [
+    path("resend/", ResendAccountVerifyEmail.as_view(), name="resend"),
+    path("verify/", AccountVerify.as_view(), name="account_verify"),
     path("register/", AccountRegister.as_view(), name="register"),
 
     #API View for get access and refresh token from user credentials

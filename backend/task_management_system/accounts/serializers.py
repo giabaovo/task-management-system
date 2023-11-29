@@ -17,6 +17,7 @@ class AccountSerializer(serializers.ModelSerializer):
 
         user = Account(email=email)
         user.set_password(password)
+        user.is_active = False
         user.save()
 
         return user
@@ -55,3 +56,6 @@ class AccountSerializer(serializers.ModelSerializer):
 
         return attrs
 
+class AccountVerifySerializer(serializers.Serializer):
+    email = serializers.EmailField()
+    otp = serializers.CharField()
